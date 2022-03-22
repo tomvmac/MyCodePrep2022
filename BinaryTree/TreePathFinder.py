@@ -56,4 +56,5 @@ c.right = f
 #  / \     \
 # d   e     f
 
-print(path_finder(a, 'e')) # -> [ 'a', 'b', 'e' ]
+print(path_finder(a, 'e'))
+# -> [ 'a', 'b', 'e' ]
