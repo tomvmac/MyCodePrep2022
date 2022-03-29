@@ -1,5 +1,19 @@
 from heapq import *
 
+def find_k_largest_numbers_simple(nums, k):
+  # Remember when using maxHeap, have to use - or negative numbers
+  maxHeap = []
+  topKNumbers = []
+
+  # Iterate through nums and add to maxHeap
+  for i in range(len(nums)):
+    heappush(maxHeap, -nums[i])
+
+  for i in range(k):
+    topKNumbers.append(-heappop(maxHeap))
+
+  return topKNumbers
+
 
 def find_k_largest_numbers(nums, k):
   minHeap = []
@@ -18,13 +32,16 @@ def find_k_largest_numbers(nums, k):
   return minHeap
 
 
+
 def main():
+  print(find_k_largest_numbers_simple([3, 1, 5, 12, 2, 11], 3))
 
   print("Here are the top K numbers: " +
         str(find_k_largest_numbers([3, 1, 5, 12, 2, 11], 3)))
 
-  print("Here are the top K numbers: " +
-        str(find_k_largest_numbers([5, 12, 11, -1, 12], 3)))
+
+  # print("Here are the top K numbers: " +
+  #       str(find_k_largest_numbers([5, 12, 11, -1, 12], 3)))
 
 
 main()
