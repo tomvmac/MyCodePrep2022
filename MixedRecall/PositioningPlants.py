@@ -23,4 +23,54 @@
 # The cost of planting flower type 0 at position 1 is $6.
 # The cost of planting flower type 2 at position 1 is $9.
 
+# Notes:
+# 1. Need to track pos, last_plant
+# 2. Create a decision tree
+# 3. From root to leaf, find the least cost
+# 4. Leaf is 0
+# 5. Bubble up, add node value to edge and then choose min value
 
+# costs = [
+#   [4, 3, 7],
+#   [6, 1, 9],
+#   [2, 5, 3]
+# ]
+
+# Solution
+# 1. Tree with values of pos, last_plant
+
+# Complexity:
+# n = # positions
+# m = # plant types
+#
+# Time: O(m ^n) for brute, O(nm) for memo
+# Space: O(n)
+
+def positioning_plants(costs):
+    return _positioning_plants(costs, 0, None, {})
+
+def _positioning_plants(costs, pos, last_plant, memo):
+    key = (pos, last_plant)
+    if key in memo:
+        return memo[key]
+
+    # base cases
+    if pos == len(costs):
+        return 0
+
+    min_cost = float('inf')
+
+    # Enumerate to get plant_type (index), plant_cost (value)
+    for plant, cost in enumerate(costs[pos]):
+        if plant != last_plant:
+            candidate = cost + _positioning_plants(costs, pos + 1, plant, memo)
+            min_cost = min(candidate, min_cost)
+
+    memo[key] = min_cost
+    return min_cost
+
+print(positioning_plants([
+  [4, 3, 7],
+  [6, 1, 9],
+  [2, 5, 3]
+])) # -> 7, by doing 4 + 1 + 2.
