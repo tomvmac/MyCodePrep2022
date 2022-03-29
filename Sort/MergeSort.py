@@ -16,10 +16,6 @@
 # 1. Take in two lists
 # 2. Iterate using queue pop until one of the list is empty
 
-
-from collections import deque
-
-
 def merge_sort(nums):
     if len(nums) <= 1:
         return nums
@@ -28,23 +24,27 @@ def merge_sort(nums):
     right_sorted = merge_sort(nums[mid_idx:])
     return merge(left_sorted, right_sorted)
 
+def merge(arr1, arr2):
+    sorted_arr = []
+    i, j = 0,0
 
-def merge(list_1, list_2):
-    list_1 = deque(list_1)
-    list_2 = deque(list_2)
-
-    merged = []
-    while list_1 and list_2:
-        # append in ascending order which ever is smaller
-        if list_1[0] < list_2[0]:
-            merged.append(list_1.popleft())
+    while i < len(arr1) and j < len(arr2):
+        if arr1[i] < arr2[j]:
+            sorted_arr.append(arr1[i])
+            i +=1
         else:
-            merged.append(list_2.popleft())
+            sorted_arr.append(arr2[j])
+            j +=1
 
-    # include the items left over from the comparisons
-    merged += list_1
-    merged += list_2
-    return merged
+    while j < len(arr2):
+        sorted_arr.append(arr2[j])
+        j += 1
+
+    while i < len(arr1):
+        sorted_arr.append(arr1[i])
+        i += 1
+
+    return sorted_arr
 
 
 numbers = [10, 4, 42, 5, 8, 100, 5, 6, 12, 40]
