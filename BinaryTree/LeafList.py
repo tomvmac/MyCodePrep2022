@@ -5,7 +5,7 @@
 
 # Solution:
 # 1. DFS
-# 2. If a node is a leaf then all to leafList
+# 2. If a node is a leaf then add to leafList
 
 
 class Node:
@@ -36,6 +36,22 @@ def leaf_list(root):
 
     return leaves
 
+def leaf_list_recur(root, leaves):
+    if root is None:
+        return []
+
+    current = root
+    if current.left is None and current.right is None:
+        leaves.append(current.val)
+
+    if current.left is not None:
+        leaf_list_recur(current.left, leaves)
+
+    if current.right is not None:
+        leaf_list_recur(current.right, leaves)
+
+    return leaves
+
 
 # Driver Code
 a = Node("a")
@@ -58,3 +74,4 @@ c.right = f
 # d   e     f
 
 print(leaf_list(a)) # -> [ 'd', 'e', 'f' ]
+print(leaf_list_recur(a, []))

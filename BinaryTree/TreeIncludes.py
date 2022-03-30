@@ -39,6 +39,18 @@ def tree_includes(root, target):
     return False
 
 
+def tree_include_recur(root, target):
+    if root is None:
+        return
+
+    if root.val == target:
+        return True
+
+    if tree_include_recur(root.left, target) or tree_include_recur(root.right, target):
+        return True
+
+    return False
+
 # Driver Code
 a = Node("a")
 b = Node("b")
@@ -60,3 +72,4 @@ c.right = f
 # d   e     f
 
 print(tree_includes(a, "e")) # -> True
+print(tree_include_recur(a, "e"))
