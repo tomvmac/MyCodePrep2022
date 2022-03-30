@@ -6,7 +6,7 @@
 # You may assume the string contains only characters: ( ) [ ] { }
 
 
-def befitting_brackets(string):
+def balance_braces(string):
     stack = []
 
     brackets = {
@@ -27,4 +27,4 @@ def befitting_brackets(string):
     return len(stack) == 0
 
 
-print(befitting_brackets('(){}[](())')) # -> True
+print(balance_braces('(){}[](())')) # -> True
