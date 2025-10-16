@@ -10,6 +10,7 @@
 
 # Brute Force Solution:
 # 2 For Loops, i, j - iterate through all possibilities and return True/False
+#
 # Time Complexity: O(n^2)
 # Space Complexity: O(1)
 
@@ -18,6 +19,23 @@
 # Sort array
 # 2 Pointers, 1 at the beginning and 1 at the end of the array.  Increment the left pointer if sum(left value + right value) is < k,
 # decrement the right pointer if the sum(left value + right value) is > k.
+#
+# Time Complexity: O(nlogn)
+# Space Complexity: Depends on the sorting algo
+
+
+# Super Refined Solution:
+# Use Hashtable, store complement of visited node
+# Iterate through array
+# Check if compliment is in visited hashtable, if not store the current array element value,
+# otherwise if complement exists then return True.
+# Return False at the end, assuming no complement found
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+
+
+
 
 
 def findPair(arr, k):
