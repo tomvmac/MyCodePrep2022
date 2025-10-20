@@ -1,6 +1,7 @@
 # Given a string str, create a function that returns the first repeating character.
 # If such character doesn't exist, return the null character '\0'.
 
+# need review
 def firstRepeatingCharacter(str):
     # your code here
     visitedLetters = {}
